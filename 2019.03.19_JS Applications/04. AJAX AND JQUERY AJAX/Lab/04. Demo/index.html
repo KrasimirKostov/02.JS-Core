@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+        </script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        body {
+            font-family: "Open Sans", serif;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=text] {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+
+    <title>AJAX Demo</title>
+
+</head>
+
+<body>
+
+    <h1>Phonebook</h1>
+    <ul id="phonebook"></ul>
+    <button id="btnLoad" onclick="onLoad()">Load</button>
+
+    <h2>Create Contact</h2>
+    Person: <input type="text" id="person" />
+    <br>
+    Phone: <input type="text" id="phone" />
+    <br>
+    <button id="btnCreate">Create</button>
+
+
+    <script>
+        const baseUrl = 'https://phonebook-af0d7.firebaseio.com/.json';
+        function onLoad() {
+            $.ajax({
+                url: baseUrl,
+                method: 'GET',
+                success: onContactsLoad
+            })
+        }
+
+        function onContactsLoad(data) {
+            $phonebook = $('#phonebook');
+
+            data.forEach(c => {
+                if (!c) {       //ako e null shte returne funkciqta, koqto se izvikva vyrhu vseki edin element
+                    return;
+                }
+                $li = $('<li>');
+                $li.text(`${c.Person}: ${c.Phone}`);
+                $phonebook.append($li);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

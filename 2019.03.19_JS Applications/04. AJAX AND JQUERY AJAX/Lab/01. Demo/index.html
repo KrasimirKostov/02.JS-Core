@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX Demo</title>
+</head>
+
+<body>
+    <button onclick="loadSwapi()">Load Repos</button>
+    <div id="result"></div>
+
+    <script>
+        function loadSwapi() {
+            let req = new XMLHttpRequest();//vanilla JS -  pravim si 1 obekt req
+            let id = 2;
+            let url = `https://swapi.co/api/people/${id}`;//definirame url
+            //1vo bildvame request i posle go izprashtame
+
+            req.onreadystatechange = function () {  //edin vid obratno vryzka - kakvo da se sluchi
+                // console.log(this);//this referira kym samiq request
+                if (this.readyState == 4 && this.status == 200) {
+                    let data = JSON.parse(this.responseText);//method parses a JSON string, constructing the JavaScript value or object described by the string.
+                    console.log(data.name);
+                }
+            }
+
+
+            req.open("GET", url, true);     //otvarqne na request, 
+            //izpolzvane na HTTP request GET - kazvame che shte e get zaqvka
+            //false - specifichno povedenie - nqma da e asinhronno
+            //true - asinhronno
+
+            req.send();    //izprashtane na request-a - prashtame zaqvki i poluchavame zaqvki
+            console.log('clicked');
+
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
