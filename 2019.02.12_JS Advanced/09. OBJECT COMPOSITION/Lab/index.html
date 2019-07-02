@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="./component.js"></script>
+    <title>Simple Component</title>
+</head>
+
+<body>
+    <input type="text" id="question">
+<button onclick="addQuestion()">send</button>
+
+    <div id="question-component"></div>
+
+    <script>
+        let cc = new QuestionComponent(document.getElementById('question-component'));
+
+
+        function addQuestion(){
+            cc.addQuestion(document.getElementById('question').value)
+        }
+    </script>
+</body>
+
+</html>

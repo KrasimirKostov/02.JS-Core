@@ -1,0 +1,52 @@
+
+
+//trqbva da se korigira zashtoto trqbva da e s anchors !
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>List of items</title>
+
+</head>
+
+<body>
+    <h1>List of Items</h1>
+    <ul id="items">
+        <li>First</li>
+        <li>Second</li>
+    </ul>
+    <input type="text" id="newItemText" />
+    <input type="button" value="Add" onclick="addItem()">
+    <script>
+        function addItem() {
+
+
+            let $text = $('#newItemText');
+            let $itemsList = $('#items');
+            let $listItem = $('<li>');
+            let $buttonDelete = $('<button>Delete</button>')
+
+            $buttonDelete.on('click', onButtonDeleteClick);
+
+            $listItem.text($text.val());
+            $listItem.append($buttonDelete);
+            $itemsList.append($listItem);
+
+            function onButtonDeleteClick(e) {
+                // console.log(this);
+                // console.log(e.target);
+                $button=$(e.target);//e.target e DOM element
+                $button.parent().remove();
+            }
+
+        }
+    </script>
+</body>
+
+</html>
